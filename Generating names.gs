@@ -95,7 +95,14 @@ function determineFileType(filename) {  // Определение формата
   var extension = filename.split('.').pop().toLowerCase();
   var fileType = "";
   var fileText = "";
-  var fileTitle = filename.substr(0, filename.lastIndexOf('.')); // Получение названия файла без формата
+  var fileTitle;
+  var lastDotIndex = file.lastIndexOf('.');
+  if (lastDotIndex !== -1) {
+      fileTitle = file.substr(file.lastIndexOf('/') + 1, lastDotIndex - file.lastIndexOf('/') - 1);
+  } else {
+      fileTitle = file.substr(file.lastIndexOf('/') + 1);
+  }
+
 
   if (extension === "mp4" || extension === "avi" || extension === "mov" || extension === "webm") { 
     fileType = "Видео";
